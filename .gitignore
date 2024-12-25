@@ -2,9 +2,16 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.pyc
+*.pyo
 # C extensions
 *.so
+
+# Data files
+*.csv
+*.xls
+*.xlsx
+*.json
 
 # Distribution / packaging
 .Python

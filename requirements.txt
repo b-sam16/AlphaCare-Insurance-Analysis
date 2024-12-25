@@ -1,0 +1,40 @@
+# Core Libraries
+pandas
+numpy
+scipy
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# Statistical Analysis
+statsmodels
+
+# Machine Learning
+scikit-learn
+xgboost
+lightgbm
+
+# Data Versioning
+dvc
+mlflow
+
+# Database
+psycopg2-binary
+sqlalchemy
+
+# Testing
+pytest
+pytest-cov
+
+# Configuration
+python-dotenv
+
+# Deployment
+streamlit
+flask
+
+# Utilities
+joblib
+tqdm
