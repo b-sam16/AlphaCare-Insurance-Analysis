@@ -12,8 +12,7 @@ __pycache__/
 *.xls
 *.xlsx
 *.json
-data
-data/*
+
 
 # Distribution / packaging
 .Python
@@ -178,3 +177,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+/config.local
+/tmp
+/cache

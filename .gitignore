@@ -1,3 +1,5 @@
+!*.dvc  # Allow .dvc files
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -12,8 +14,7 @@ __pycache__/
 *.xls
 *.xlsx
 *.json
-data
-data/*
+
 
 # Distribution / packaging
 .Python
