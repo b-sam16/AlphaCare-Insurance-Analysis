@@ -35,7 +35,7 @@ class EDAHandler:
 
         # Impute numerical columns with the median (more robust than mean)
         numerical_columns = self.data.select_dtypes(include=['float64', 'int64']).columns
-        self.data[numerical_columns] = self.data[numerical_columns].fillna(self.data[numerical_columns].median())
+        self.data[numerical_columns] = self.data[numerical_columns].fillna(self.data[numerical_columns].mean())
 
         # Fill categorical columns with 'Unknown'
         categorical_columns = self.data.select_dtypes(include=['object']).columns
