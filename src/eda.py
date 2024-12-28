@@ -30,8 +30,8 @@ class EDAHandler:
     def clean_data(self):
         # Handling missing values by imputing or dropping
         # Drop columns with too many missing values
-        columns_to_drop = ['NumberOfVehiclesInFleet']  # Adjust based on your analysis
-        self.data.drop(columns=columns_to_drop, inplace=True)
+        columns_to_drop = ['NumberOfVehiclesInFleet']
+        self.data.drop(columns=[col for col in columns_to_drop if col in self.data.columns], inplace=True)
 
         # Impute numerical columns with the median (more robust than mean)
         numerical_columns = self.data.select_dtypes(include=['float64', 'int64']).columns
