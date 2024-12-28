@@ -46,6 +46,29 @@ class EDAHandler:
         self.data['TransactionMonth'] = pd.to_datetime(self.data['TransactionMonth'], errors='coerce')
 
         print("\nMissing Values After Cleaning:\n", self.missing_values())
-
+    
+    def handle_outliers_iqr(self):
+        """
+        Handle outliers in numerical columns using the IQR method.
+        Removes rows with outliers beyond 1.5 times the IQR range.
+        """
+        numerical_columns = self.data.select_dtypes(include=['number']).columns
+        
+        for col in numerical_columns:
+            Q1 = self.data[col].quantile(0.25)
+            Q3 = self.data[col].quantile(0.75)
+            IQR = Q3 - Q1
+            
+            lower_bound = Q1 - 1.5 * IQR
+            upper_bound = Q3 + 1.5 * IQR
+            
+            # Filter out rows outside the bounds
+            self.data = self.data[
+                (self.data[col] >= lower_bound) & 
+                (self.data[col] <= upper_bound)
+            ]
+        
+        print("Outliers handled using IQR method for numerical columns.")
+        
         return self.data
     
