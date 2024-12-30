@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 class EDAHandler:
     def __init__(self, file_path):
@@ -27,7 +28,7 @@ class EDAHandler:
 # Example usage
 #eda = EDAHandler('data/Insurance_data.csv')
 
-    def clean_data(self):
+    def clean_data(self, output_path='../data/cleaned_data.csv'):
         # Handling missing values by imputing or dropping
         # Drop columns with too many missing values
         columns_to_drop = ['NumberOfVehiclesInFleet']
@@ -46,6 +47,13 @@ class EDAHandler:
         self.data['TransactionMonth'] = pd.to_datetime(self.data['TransactionMonth'], errors='coerce')
 
         print("\nMissing Values After Cleaning:\n", self.missing_values())
+
+        # Save the cleaned data
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        self.data.to_csv(output_path, index=False)
+        print(f"\n✅ Cleaned dataset saved to: {output_path}")
+        
+        return self.data
     
     def handle_outliers_iqr(self):
         """
