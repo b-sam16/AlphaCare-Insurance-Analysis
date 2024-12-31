@@ -11,7 +11,7 @@ class EDAHandler:
         numerical_stats = self.data[numerical_columns].describe()
 
         # Select categorical columns
-        categorical_columns = self.data.select_dtypes(include=['object']).columns
+        categorical_columns = self.data.select_dtypes(include=['object','bool']).columns
         categorical_stats = self.data[categorical_columns].describe()
 
         return numerical_stats, categorical_stats

@@ -80,51 +80,17 @@ class Visualizer:
         plt.title('Correlation Matrix: TotalPremium & TotalClaims')
         plt.show()
 
+    def compare_geographical_trends(self, feature, by):
+        plt.figure(figsize=(12, 8)) 
+        sns.barplot(x=by, y=feature, data=self.data, estimator=lambda x: len(x) / len(self.data) * 100) 
+        plt.title(f'Distribution of {feature} by {by}') 
+        plt.xlabel(by) 
+        plt.ylabel(f'Percentage of {feature}') 
+        plt.xticks(rotation=45)
+        plt.grid(True)
+        plt.show()
 
-    def plot_premium_trend(self):
-        """Compare Total Premium trends across regions over time."""
-        plt.figure(figsize=(10, 6))
-        sns.lineplot(data=self.data, x='TransactionMonth', y='TotalPremium', hue='Province', marker='o')
-        plt.title('Trends in Total Premium Over Time by Region')
-        plt.xlabel('Transaction Month')
-        plt.ylabel('Total Premium')
-        plt.legend(title='Province', bbox_to_anchor=(1.05, 1), loc='upper left')
-        plt.tight_layout()
-        plt.show()
     
-    def plot_cover_type_trend(self):
-        """Compare Insurance Cover Type trends across regions over time."""
-        # Aggregating CoverType if necessary (e.g., counts)
-        cover_type_trend = (
-            self.data.groupby(['TransactionMonth', 'Province'])['CoverType']
-            .count()
-            .reset_index()
-        )
-        plt.figure(figsize=(10, 6))
-        sns.lineplot(data=cover_type_trend, x='TransactionMonth', y='CoverType', hue='Province', marker='o')
-        plt.title('Trends in Cover Type Over Time by Region')
-        plt.xlabel('Transaction Month')
-        plt.ylabel('Cover Type Count')
-        plt.legend(title='Province', bbox_to_anchor=(1.05, 1), loc='upper left')
-        plt.tight_layout()
-        plt.show()
-    
-    def plot_auto_make_trend(self):
-        """Compare Auto Make trends across regions over time."""
-        # Aggregating make if necessary (e.g., counts)
-        auto_make_trend = (
-            self.data.groupby(['TransactionMonth', 'Province'])['make']
-            .count()
-            .reset_index()
-        )
-        plt.figure(figsize=(10, 6))
-        sns.lineplot(data=auto_make_trend, x='TransactionMonth', y='make', hue='Province', marker='o')
-        plt.title('Trends in Auto Make Over Time by Region')
-        plt.xlabel('Transaction Month')
-        plt.ylabel('Auto Make Count')
-        plt.legend(title='Province', bbox_to_anchor=(1.05, 1), loc='upper left')
-        plt.tight_layout()
-        plt.show()
 
     def plot_outlier_detection(self):
         """
@@ -138,3 +104,14 @@ class Visualizer:
             ax.set_title(f'Outlier Detection for {col}')
         plt.tight_layout()
         plt.show()
+
+    def compare_geographical_trends(self, feature, by):
+        plt.figure(figsize=(12, 8)) 
+        sns.barplot(x=by, y=feature, data=self.data, estimator=lambda x: len(x) / len(self.data) * 100) 
+        plt.title(f'Distribution of {feature} by {by}') 
+        plt.xlabel(by) 
+        plt.ylabel(f'Percentage of {feature}') 
+        plt.xticks(rotation=45)
+        plt.grid(True)
+        plt.show()
+
